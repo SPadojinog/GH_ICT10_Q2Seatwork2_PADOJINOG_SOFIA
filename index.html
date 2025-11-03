@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seatwork#2 - Student Grade Calculator</title>
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.7.3/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2025.7.3/core.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Chango&family=Chewy&family=Sour+Gummy:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Sour Gummy", cursive, sans-serif;
+            background-image: url(https://i.pinimg.com/1200x/89/7d/63/897d6330c13666cb81f99e269e4baaaa.jpg);
+            margin: 0;
+            padding: 0;
+            background-position: center;
+        }
+
+        nav {
+            background: #660B05;
+            padding: 15px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav h2 {
+            font-family: "Chango", cursive;
+            font-size: 22px;
+            margin: 0;
+        }
+
+        nav .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav .links a {
+            color: white;
+            text-decoration: none;
+            margin: 8px 12px;
+            font-weight: bold;
+        }
+
+        nav .links a:hover {
+            text-decoration: underline;
+        }
+
+        .banner {
+            background-color: #A31D1D;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 30px;
+        }
+
+        .banner h1 {
+            font-family: "Chewy", cursive;
+            font-size: 40px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-card h3 {
+            font-family: "Chewy", cursive;
+            color: #A31D1D;
+            text-align: center;
+        }
+
+        .divider {
+            border-top: 2px solid #A31D1D;
+            margin: 20px 0;
+        }
+
+        .create-order-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-lg {
+            min-width: 180px;
+            font-size: 18px;
+            margin: 5px;
+        }
+
+        /* BACK BUTTON BELOW MENU */
+        .back-home {
+            text-align: center;
+            margin: 40px 0 60px 0;
+        }
+
+        .back-home a {
+            background-color: #A31D1D;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-home a:hover {
+            background-color: #C62828;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* RESPONSIVE FIXES */
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .menu-card {
+                padding: 15px;
+            }
+
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav h2 {
+                margin-bottom: 10px;
+            }
+
+            .btn-lg {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .back-home {
+                margin: 30px 0 40px 0;
+            }
+
+            .back-home a {
+                padding: 10px 25px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h2 {
+                font-size: 20px;
+            }
+
+            .banner h1 {
+                font-size: 26px;
+            }
+
+            .menu-card h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <h2>🥄 Silver Spoon</h2>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="order-here.html">Order Now</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- BANNER -->
+    <div class="banner">
+        <h1>Student Grade Calculator!</h1>
+        <p>Fill in your grades and get your general weighted average!</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Student Details and Average Grade -->
+            <div class="col-lg-6 col-md-12">
+                <div class="menu-card">
+                    <h3>👤 Student Details</h3>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label><b>First Name:</b></label>
+                            <input type="text" id="student_firstname" class="form-control" placeholder="Enter your first name">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="mt-2"><b>Last Name:</b></label>
+                            <input type="text" id="student_lastname" class="form-control" placeholder="Enter your last name">
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Average Grade -->
+                    <div class="average-grade">
+                        <h4>🧾 General Weighted Average</h4>
+                        <p id="grade_result">No grades yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade Inputs -->
+            <div class="col-lg-6 col-md-12">
+                <div class="menu-card">
+                    <h3>📋 Enter your grades here:</h3>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>SCIENCE</b></span>
+                                <input type="number" id="SCI" class="form-control" placeholder="Enter your science grade here">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>MATH</b></span>
+                                <input type="number" id="MATH" class="form-control" placeholder="Enter your math grade here">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>ENGLISH</b></span>
+                                <input type="number" id="ENG" class="form-control" placeholder="Enter your english grade here">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>FILIPINO</b></span>
+                                <input type="number" id="FIL" class="form-control" placeholder="Enter your filipino grade here">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>ICT</b></span>
+                                <input type="number" id="ICT" class="form-control" placeholder="Enter your ICT grade here">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="grade-input">
+                                <span class="label"><b>PE</b></span>
+                                <input type="number" id="PE" class="form-control" placeholder="Enter your PE grade here">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Buttons -->
+                    <div class="create-order-wrapper">
+                        <button id="compute_grades" class="btn btn-danger btn-lg fw-bold" py-click="student_grade_calculator">
+                            Compute Grades ✨
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PYTHON SCRIPT -->
+    <py-script src="main.py"></py-script>
+</body>
+</html>
